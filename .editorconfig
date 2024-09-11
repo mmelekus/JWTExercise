@@ -1,0 +1,4 @@
+[*.cs]
+
+# CS9099: The default parameter value does not match in the target delegate type.
+dotnet_diagnostic.CS9099.severity = none

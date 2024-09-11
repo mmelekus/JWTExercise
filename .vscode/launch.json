@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "C#: JWTWebApi [https]",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\JWTWebApi\\JWTWebApi.csproj",
+            "launchConfigurationId": "TargetFramework=;https"
+        }
+    ]
+}
