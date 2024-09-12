@@ -55,7 +55,8 @@ public class HelperClass
 
         foreach(var claim in claims!)
         {
-            claimsDictionary.Add(claim.Type, claim.Value);
+            string type = claim.Type.Contains("nameidentifier") ? "sub" : claim.Type;
+            claimsDictionary.Add(type, claim.Value);
         }
 
         JsonSerializerOptions options = new() { WriteIndented = true };
