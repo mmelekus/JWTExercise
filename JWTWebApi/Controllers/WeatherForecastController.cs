@@ -12,16 +12,18 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
+    private readonly HelperClass _helperClass;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, HelperClass helperClass)
     {
         _logger = logger;
+        _helperClass = helperClass;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
-        Response.Cookies.Append("JWTTestToken", HelperClass.GenerateJwtToken("your_secret_key!your_secret_key!@", "your_issuer", "your_audience"));
+        Response.Cookies.Append("JWTTestToken", _helperClass.GenerateJwtToken("your_secret_key!your_secret_key!@", "your_issuer", "your_audience"));
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -35,7 +37,7 @@ public class WeatherForecastController : ControllerBase
     public IActionResult PostTestCookie()
     {
         var token = Request.Cookies.Where(k => k.Key == "JWTTestToken").FirstOrDefault();
-        var claims = HelperClass.ReadJwtTokenString(token.Value);
+        var claims = _helperClass.ReadJwtTokenString(token.Value);
         return Ok(claims);
     }
 }

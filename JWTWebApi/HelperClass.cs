@@ -7,16 +7,20 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace JWTWebApi;
 
-public static class HelperClass
+public class HelperClass
 {
-    private static byte[] _secretKey = null!;
+    private readonly byte[] _secretKey;
 
-    public static string GenerateJwtToken(string secretKey, string issuer, string audience, int expireMinutes = 30)
+    public HelperClass(ConfigurationManager configuration)
     {
+        string secretKey = configuration["jwt:secretKey"]!; // Stored in user secrets; is a GUID
         byte[] utf8Array = Encoding.UTF8.GetBytes(secretKey);
         string base64String = Convert.ToBase64String(utf8Array);
         _secretKey = Convert.FromBase64String(base64String);
+    }
 
+    public string GenerateJwtToken(string secretKey, string issuer, string audience, int expireMinutes = 30)
+    {
         SymmetricSecurityKey securityKey = new(_secretKey);
         SigningCredentials credentials = new(securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -26,7 +30,7 @@ public static class HelperClass
             {
                 new Claim(JwtRegisteredClaimNames.Sub, "your_user_id"),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("Validator", "true")
+                new Claim("validator", "true")
             }),
             Expires = DateTime.UtcNow.AddMinutes(expireMinutes),
             Issuer = issuer,
@@ -40,7 +44,7 @@ public static class HelperClass
         return tokenHandler.WriteToken(token);
     }
 
-    public static string ReadJwtTokenString(string token)
+    public string ReadJwtTokenString(string token)
     {
         JwtSecurityTokenHandler tokenHandler = new();
         // JwtSecurityToken tokenValue = tokenHandler.ReadJwtToken(token);
@@ -60,7 +64,7 @@ public static class HelperClass
         return jsonClaims;
     }
 
-    public static ClaimsPrincipal? ValidateJwtToken(string token)
+    public ClaimsPrincipal? ValidateJwtToken(string token)
     {
         JwtSecurityTokenHandler tokenHandler = new();
         TokenValidationParameters validationParameters = new()
