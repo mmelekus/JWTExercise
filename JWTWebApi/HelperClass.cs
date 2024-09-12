@@ -73,7 +73,7 @@ public class HelperClass
             ValidateIssuer = false,
             ValidateAudience = false,
             ValidateLifetime = true,
-            ValidateIssuerSigningKey = false,
+            ValidateIssuerSigningKey = true,
             ValidateActor = true,
             IssuerSigningKey = new SymmetricSecurityKey(_secretKey)
         };
