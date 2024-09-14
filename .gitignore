@@ -29,6 +29,7 @@ x86/
 [Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
+build/
 bld/
 [Bb]in/
 [Oo]bj/
@@ -138,6 +139,9 @@ _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
+# JustCode is a .NET coding add-in
+.JustCode
+
 # TeamCity is a build add-in
 _TeamCity*
 
@@ -220,6 +224,9 @@ csx/
 ecf/
 rcf/
 
+# Microsoft Azure ApplicationInsights config file
+ApplicationInsights.config
+
 # Windows Store app package directories and files
 AppPackages/
 BundleArtifacts/
@@ -271,6 +278,9 @@ ServiceFabricBackup/
 *.mdf
 *.ldf
 *.ndf
+
+# Angular build and cache files
+**/.[Aa]ngular/
 
 # Business Intelligence projects
 *.rdl.data
