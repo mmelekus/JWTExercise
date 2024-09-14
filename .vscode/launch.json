@@ -6,6 +6,13 @@
             "request": "launch",
             "projectPath": "${workspaceFolder}\\JWTWebApi\\JWTWebApi.csproj",
             "launchConfigurationId": "TargetFramework=;https"
+        },
+        {
+            "name": "C#: JWTAngularClientApp",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\JwtAngularClientApp\\JWTAngularClientApp.csproj",
+            "launchConfigurationId": "TargetFramework=;JWTAngularClientApp"
         }
     ]
 }

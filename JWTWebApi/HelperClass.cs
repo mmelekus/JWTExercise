@@ -86,7 +86,7 @@ public class HelperClass
         catch (Exception ex)
         {
             Console.WriteLine($"Token validation failed: {ex.Message}");
-            return null;
+            throw;
         }
     }
 }

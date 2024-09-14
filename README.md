@@ -20,3 +20,10 @@ Exercises to create authorization JWT's and then read them.  This includes using
 - IDE's:
   - Visual Studio Code 1.93.0
 - Version Control: Git 2.45.2.windows.1
+
+
+## Issues
+> - *cannot find definition file for 'node'*
+>   - run: `npm install @types/node --save-dev`
+> - In Visual Studio Code: *This syntax requires an imported helper but module 'tslib' cannot be found*
+>   - Install the *JavaScipt and TypeScript Nightly* extension
