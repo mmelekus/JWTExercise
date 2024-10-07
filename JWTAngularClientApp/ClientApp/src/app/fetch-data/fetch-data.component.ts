@@ -14,7 +14,7 @@ export class FetchDataComponent {
 
   ngOnInit(): void {
     this.weatherService.getWeather().subscribe(data => {
-      this.forecasts = data;
+      this.forecasts = data.body ?? [];
     })
   }
 

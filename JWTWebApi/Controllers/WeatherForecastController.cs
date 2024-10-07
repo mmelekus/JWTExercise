@@ -23,7 +23,7 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
-        Response.Cookies.Append("JWTTestToken", _helperClass.GenerateJwtToken("your_secret_key!your_secret_key!@", "your_issuer", "your_audience"));
+        Response.Cookies.Append("JWTTestToken", _helperClass.GenerateJwtToken("your_secret_key!your_secret_key!@", "your_issuer", "your_audience"), new CookieOptions() { HttpOnly = true, Expires = DateTimeOffset.UtcNow.AddMinutes(30) });
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
